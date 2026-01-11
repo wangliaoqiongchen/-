@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>17合1效率工具箱 - 手机端</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 二维码生成依赖 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fa-solid fa-wrench"></i> 17合1效率工具箱</h1>
+            <p class="subtitle">轻量 · 高效 · 无广告 · 纯前端</p>
+        </header>
+
+        <!-- 功能分类卡片 -->
+        <!-- 分类1：文本处理（6个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-font"></i> 文本处理</h2>
+            <textarea id="text-main" placeholder="请输入文本内容..." class="input-area"></textarea>
+            <div class="btn-group">
+                <button id="btn-summary" class="tool-btn sm-btn">AI总结</button>
+                <button id="btn-count" class="tool-btn sm-btn">字数统计</button>
+                <button id="btn-upper" class="tool-btn sm-btn">转大写</button>
+            </div>
+            <div class="btn-group">
+                <button id="btn-lower" class="tool-btn sm-btn">转小写</button>
+                <button id="btn-uniq" class="tool-btn sm-btn">文本去重</button>
+                <button id="btn-reverse" class="tool-btn sm-btn">文本反转</button>
+            </div>
+            <div class="result-area" id="result-text"></div>
+        </div>
+
+        <!-- 分类2：文本提取（2个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-scissors"></i> 文本提取</h2>
+            <textarea id="text-extract" placeholder="输入待提取文本..." class="input-area"></textarea>
+            <div class="btn-group">
+                <button id="btn-extract-num" class="tool-btn sm-btn">提取数字</button>
+                <button id="btn-extract-letter" class="tool-btn sm-btn">提取字母</button>
+            </div>
+            <div class="result-area" id="result-extract"></div>
+        </div>
+
+        <!-- 分类3：计算工具（3个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-calculator"></i> 计算工具</h2>
+            <div class="input-group">
+                <input type="number" id="num-input" placeholder="输入数值" class="num-input">
+                <select id="calc-type" class="select-input">
+                    <option value="random">随机数生成</option>
+                    <option value="count-money">大小写金额</option>
+                </select>
+            </div>
+            <button id="btn-calc" class="tool-btn">执行计算</button>
+            <div class="result-area" id="result-calc"></div>
+        </div>
+
+        <!-- 分类4：单位换算（3个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-ruler-combined"></i> 单位换算</h2>
+            <div class="input-group">
+                <input type="number" id="convert-input" placeholder="输入数值" class="num-input">
+                <select id="convert-type" class="select-input">
+                    <option value="length">长度(米↔厘米)</option>
+                    <option value="weight">重量(千克↔克)</option>
+                    <option value="exchange">汇率(人民币↔美元)</option>
+                </select>
+            </div>
+            <button id="btn-convert" class="tool-btn">立即换算</button>
+            <div class="result-area" id="result-convert"></div>
+        </div>
+
+        <!-- 分类5：生活工具（2个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-clock"></i> 生活工具</h2>
+            <div class="input-group">
+                <input type="number" id="time-input" placeholder="输入秒数" class="num-input">
+                <select id="life-type" class="select-input">
+                    <option value="countdown">倒计时</option>
+                    <option value="memo">简易备忘录</option>
+                </select>
+            </div>
+            <button id="btn-life" class="tool-btn">启动功能</button>
+            <div class="result-area" id="result-life"></div>
+        </div>
+
+        <!-- 分类6：编码工具（1个功能） -->
+        <div class="tool-card">
+            <h2 class="card-title"><i class="fa-solid fa-qrcode"></i> 编码工具</h2>
+            <input type="text" id="qrcode-input" placeholder="输入网址/文本生成二维码" class="input-area short-input">
+            <button id="btn-qrcode" class="tool-btn">生成二维码</button>
+            <div class="result-area qrcode-result" id="result-qrcode"></div>
+        </div>
+
+        <footer class="footer">
+            <p>© 2025 17合1效率工具箱 | 手机端专属</p>
+        </footer>
+    </div>
+
+    <script>
+        // ========== 全局通用函数 ==========
+        function showResult(el, content, isWarn = false) {
+            const resultEl = document.getElementById(el);
+            resultEl.innerHTML = isWarn ? `<span class="warn">${content}</span>` : `<strong>结果：</strong>${content}`;
+        }
+
+        // ========== 1. AI文本总结（功能1） ==========
+        document.getElementById('btn-summary').addEventListener('click', () => {
+            const text = document.getElementById('text-main').value.trim();
+            if (!text) return showResult('result-text', '请输入文本！', true);
+            const summary = text.length > 100 ? text.substring(0, 100) + '...（摘要已截取前100字）' : text;
+            showResult('result-text', `AI总结：${summary}`);
+        });
+
+        // ========== 2. 字数统计（功能2） ==========
+        document.getElementById('btn-count').addEventListener('click', () => {
+            const text = document.getElementById('text-main').value.trim();
+            if (!text) return showResult('result-text', '请输入文本！', true);
+            const total = text.length;
+            const noSpace = text.replace(/\s/g, '').length;
+            const chinese = text.replace(/[^\u4e00-\u9fa5]/g, '').length;
+            showResult('result-text', `总字符：${total} | 无空格：${noSpace} | 中文：${chinese}`);
+        });
+
+        // ========== 3. 转大写（功能3） ==========
+        document.getElementById('btn-upper').addEventListener('click', () => {
+            const text = document.getElementById('text-main').value.trim();
+            if (!text) return showResult('result-text', '请输入文本！', true);
+            showResult('result-text', text.toUpperCase());
+        });
+
+        // ========== 4. 转小写（功能4） ==========
+        document.getElementById('btn-lower').addEventListener('click', () => {
+            const text = document.getElementById('text-main').value.trim();
+            if (!text) return showResult('result-text', '请输入文本！', true);
+            showResult('result-text', text.toLowerCase());
+        });
+
+        // ========== 5. 文本去重（功能5） ==========
+        document.getElementById('btn-uniq').addEventListener('click', () => {
+            const text = document.getElementById('text-main').value.trim();
+            if (!text) return showResult('result-text', '请输入文本！', true);
+            const uniq = [...new Set(text.split(''))].join('');
+            showResult

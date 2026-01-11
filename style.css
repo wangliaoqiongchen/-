@@ -1,0 +1,177 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    padding: 1.2rem;
+}
+
+.container {
+    max-width: 550px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.header {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.header h1 {
+    color: #2d3748;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.header h1 i {
+    color: #4299e1;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 0.9rem;
+}
+
+.tool-card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+    color: #2d3748;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.card-title i {
+    color: #4299e1;
+    font-size: 1.1rem;
+}
+
+.input-area {
+    width: 100%;
+    min-height: 80px;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    resize: none;
+    font-size: 1rem;
+    color: #2d3748;
+    background-color: #fafafa;
+    margin-bottom: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input-area:focus {
+    border-color: #4299e1;
+    background-color: #ffffff;
+}
+
+.short-input {
+    min-height: 50px;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.tool-btn {
+    padding: 0.7rem 1rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #4299e1;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: background-color 0.2s ease;
+}
+
+.tool-btn:hover {
+    background-color: #3182ce;
+}
+
+.sm-btn {
+    flex: 1;
+    min-width: 80px;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.num-input, .select-input {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.num-input:focus, .select-input:focus {
+    border-color: #4299e1;
+}
+
+.result-area {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    background-color: #f0f8fb;
+    color: #2d3748;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.qrcode-result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px dashed #e2e8f0;
+}
+
+.warn {
+    color: #e53e3e;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem 0;
+    color: #718096;
+    font-size: 0.85rem;
+}
